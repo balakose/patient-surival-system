@@ -15,7 +15,12 @@ page = st.sidebar.radio("Go to:", ["Data Analysis Dashboard", "Survival Predicti
 # --- 3. Load Data & Model ---
 @st.cache_resource
 def load_data():
-    return pd.read_csv('haberman.csv')
+    # Hum khud column names de rahe hain
+    column_names = ['age', 'operational_year', 'axillary_nodes', 'survival_status']
+    
+    # 'names' parameter use karne se Pandas pehli row ko data maanega, header nahi
+    df = pd.read_csv('haberman.csv', names=column_names)
+    return df
 
 @st.cache_resource
 def load_model():
